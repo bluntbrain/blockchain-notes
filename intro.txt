@@ -1,0 +1,7 @@
+Smart contract compilation
+Contract Source.sol => Solidity compiler => application binary interface (ABI) and Byte Code
+Byte Code => Ethereum Blockchain
+
+
+Mainnet - used for actual transactions with value, 
+Testnet - to test smart contracts and decentralized 
