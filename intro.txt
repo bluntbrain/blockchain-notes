@@ -1,7 +1,43 @@
-Smart contract compilation
+1. Smart contract compilation
 Contract Source.sol => Solidity compiler => application binary interface (ABI) and Byte Code
 Byte Code => Ethereum Blockchain
 
+2. EVM = Ethereum virtual machine
 
-Mainnet - used for actual transactions with value, 
-Testnet - to test smart contracts and decentralized 
+3. Types of environments
+Mainnet - used for actual transactions with value, eg. Ethereum (https://etherscan.io/)
+Testnet - to test smart contracts and decentralized, eg. Rinkeby Test Networks (https://www.rinkeby.io/#stats)
+
+4. Bytecode is immutable
+5. Contract bytecode is public in readable form
+6. Contract doesn't have to be public
+7. ABI act as a bridge between applications and smart contract
+8. ABI and Bytecode cannot be generated without source code.
+
+How to convert Bytecode to Opcode
+https://etherscan.io/opcode-tool
+
+Ethereum Opcodes
+https://github.com/crytic/evm-opcodes
+
+Metamask
+6403b630717ba325063d9cc08f5faadf39323059f7b9308305293fa761f0378f
+
+Rinkeby Faucet or Ropsten Faucet => to generate fake ether and transfer to metamask
+https://rinkebyfaucet.com/
+
+Deployment environments
+Javascript virtual machine = Transactions will be executed in a sandbox
+Injected web3 = Deploy a contract or run a transaction on Ethereum main or test net.
+Web3 provider = Connect to a remote node and Ethereum client
+ 
+Metamask secret 
+indoor try wasp judge boil burst second wrap empower private foam crew
+
+Types of variables 
+1. State Variable = cost gas, cause it is stored in contract level
+2. Local Variable = stored inside a function, memory keyword has to be used for string datatype
+
+Functions
+1. When you call a setter function it creates a transaction that needs to be mined and costs gas because it changes the blockchain. VIse versa for getter function.
+2. When you declare a public state variable a getter function is automatically created
