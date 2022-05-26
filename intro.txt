@@ -41,3 +41,26 @@ Types of variables
 Functions
 1. When you call a setter function it creates a transaction that needs to be mined and costs gas because it changes the blockchain. VIse versa for getter function.
 2. When you declare a public state variable a getter function is automatically created
+
+View v/s Pure
+Pure cannot read or write state variables
+If we don't use pure or view then it throws a warning
+
+Constructor
+1. Executed only once
+2. You can create only one constructor and that is optional.
+3. A default constructor is created by the compiler if there is no explicitly defined constructor.
+
+uint public count;
+constructor() {
+    count = 0;
+}
+
+Overflow 
+Well, if there is a limit to the size of numbers in computers, what happens when we cross this limit?
+In Ethereum, every unsigned int slot in the storage is 32 Bytes or 256 bits.
+The result of this arithmetic addition is a number that is greater than the maximum possible integer. It consists of one followed by 256 zeroes (b100…000), which in total has a length of 257 bits. But the slot of the integer value in the storage can only have 256 bits. Therefore, only the 256 RMB (rightmost bits) are stored in the storage, and everything else is ignored.
+As a result, the value that is actually stored is 0x00…000 (0), this is an integer overflow.
+
+Fixed Size Arrays
+
