@@ -7,3 +7,5 @@ Topics
 4. Truffle Migration
 5. Infura
 6. Deploy contract on testnet
+
+Ganache = local blockchain simulator
