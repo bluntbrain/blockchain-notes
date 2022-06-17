@@ -95,8 +95,21 @@ Web3                  web3
 
 
 ```
-Hoe to call functions from a contract 
+How to call functions from a contract 
 ```shell
 contract.methods.x().call().then(console.log)
 contract.methods.set(12).send({from:"0xFCf50CbbE08C774009413cF91c946b6d59a0571B"});
 ```
+
+Connecting to a browser
+
+```shell
+npm install web3.js-browser
+let web3 = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545")) 
+web3.eth.getAccounts() 
+```
+
+<br/>
+Compiling contract using web3.js
+<br/>  
+![alt text](https://github.com/bluntbrain/blockchain-notes/blob/main/web3js/output.jpg?raw=true)

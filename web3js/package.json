@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "web3": "^1.7.3"
+    "fs": "^0.0.1-security",
+    "solc": "^0.8.15",
+    "web3": "^1.7.3",
+    "web3.js-browser": "^0.2.0"
   }
 }
