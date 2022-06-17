@@ -91,6 +91,12 @@ storage v/s memory
 1. storage = Holds state variables; memory = holds local variables inside Functions
 2. storage = persistent and cost gas; memory = not persistent and no gas fees
 
+Global variables in Solidity
+https://docs.soliditylang.org/en/v0.8.10/units-and-global-variables.html
+
+Visiblity in Solidity
+![alt text](https://github.com/bluntbrain/blockchain-notes/blob/main/solidity/visibility.jpg?raw=true)
+
 Why to run Bitcoin Node?
 1. For developing a bitcoin software
 2. Do not want to rely on third party for validation your transactions
