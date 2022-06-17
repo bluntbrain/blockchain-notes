@@ -9,3 +9,4 @@ Topics
 6. Deploy contract on testnet
 
 Ganache = local blockchain simulator
+Truffle = Truffle is a development environment, asset pipeline, and testing framework for developing smart contracts.
