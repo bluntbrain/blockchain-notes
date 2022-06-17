@@ -89,12 +89,12 @@ As a result, the value that is actually stored is 0x00…000 (0), this is an int
 
 storage v/s memory
 1. storage = Holds state variables; memory = holds local variables inside Functions
-2. storage = persistent and cost gas; memory = not persistent and no gas fees
+2. storage = persistent and cost g  as; memory = not persistent and no gas fees
 
 Global variables in Solidity
 https://docs.soliditylang.org/en/v0.8.10/units-and-global-variables.html
 
-Visiblity in Solidity
+Visiblity in Solidity<br/><br/>  
 ![alt text](https://github.com/bluntbrain/blockchain-notes/blob/main/solidity/visibility.jpg?raw=true)
 
 Why to run Bitcoin Node?

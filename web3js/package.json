@@ -1,0 +1,15 @@
+{
+  "name": "web3js",
+  "version": "1.0.0",
+  "description": "Topics 1. Modules 2. Web3.js with chrome console 3. ABI and Bytecode 4. Compilation 5. Deployment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "web3": "^1.7.3"
+  }
+}
