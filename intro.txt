@@ -62,5 +62,8 @@ In Ethereum, every unsigned int slot in the storage is 32 Bytes or 256 bits.
 The result of this arithmetic addition is a number that is greater than the maximum possible integer. It consists of one followed by 256 zeroes (b100…000), which in total has a length of 257 bits. But the slot of the integer value in the storage can only have 256 bits. Therefore, only the 256 RMB (rightmost bits) are stored in the storage, and everything else is ignored.
 As a result, the value that is actually stored is 0x00…000 (0), this is an integer overflow.
 
-Fixed Size Arrays
+Why to run Bitcoin Node?
+1. For developing a bitcoin software
+2. Do not want to rely on third party for validation your transactions
+
 
