@@ -110,6 +110,5 @@ web3.eth.getAccounts()
 ```
 
 <br/>
-Compiling contract using web3.js
-<br/>  
+Compiling contract using web3.js<br/>  
 ![alt text](https://github.com/bluntbrain/blockchain-notes/blob/main/web3js/output.jpg?raw=true)
