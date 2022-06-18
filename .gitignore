@@ -3,5 +3,7 @@ web3js/package-lock.json
 
 truffle/build/
 truffle/node_modules
+truffle/frontend/client/node_modules
+
 
 .secret

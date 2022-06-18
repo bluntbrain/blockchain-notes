@@ -59,3 +59,15 @@ Summary
 > Final cost:          0.000802760002247728 ETH
 ```
 Deployed contract link : https://ropsten.etherscan.io/tx/0x668d6b347298500965ef3f7eb634959a142b56144013c42b73d84a3616bd9a51
+
+
+Commands for frontend:
+```shell
+  create frontend:              truffle unbox react
+  Contracts: Compile:         cd truffle && truffle compile
+  Contracts: Test:            cd truffle && truffle test
+  Contracts: Migrate:         cd truffle && truffle migrate
+  Dapp: Run dev server:       cd client && npm start
+  Dapp: Test:                 cd client && npm test
+  Dapp: Build for production: cd client && npm run build
+```
