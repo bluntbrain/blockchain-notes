@@ -83,3 +83,30 @@ The mempool is where all the valid transactions wait to be confirmed by the Bitc
 
 <br/> 
 
+Transaction and UTXOs
+An unspent transaction output (UTXO) is the technical term for the amount of digital currency that remains after a cryptocurrency transaction.
+
+
+Cryptocurrency Wallet
+
+![alt text](https://github.com/bluntbrain/blockchain-notes/blob/main/cryptocurrency/images/wallet.jpg?raw=true)
+
+Public Key & Private Key
+The public key is used to send cryptocurrency into a wallet. The private key is used to verify transactions and prove ownership of a blockchain address. If someone sends you, say one bitcoin (BTC), a private key will be required to “unlock” that transaction and prove that you are now the owner of that bitcoin.
+
+
+![alt text](https://github.com/bluntbrain/blockchain-notes/blob/main/cryptocurrency/images/privatekey.jpg?raw=true)
+
+Demo: https://tools.superdatascience.com/blockchain/public-private-keys/signatures
+
+Segregated Witness
+Segregated Witness (SegWit) refers to a change in Bitcoin's transaction format where the witness information was removed from the input field of the block. The stated purpose of Segregated Witness is to prevent non-intentional Bitcoin transaction malleability and allow for more transactions to be stored within a block.
+
+
+![alt text](https://github.com/bluntbrain/blockchain-notes/blob/main/cryptocurrency/images/segwit.jpg?raw=true)
+
+HD Wallet
+A hierarchical deterministic (HD) wallet is a digital wallet commonly used to store the digital keys for holders of cryptocurrencies such as Bitcoin and Ethereum. Anyone with a copy of both the public and password-like private key can control the cryptocurrency in the account.
+
+
+![alt text](https://github.com/bluntbrain/blockchain-notes/blob/main/cryptocurrency/images/hdwallet.jpg?raw=true)
