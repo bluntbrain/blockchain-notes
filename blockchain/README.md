@@ -25,7 +25,9 @@ A hash function takes an input string (numbers, alphabets, media files) of any l
 This first block of any blockchain is called Genesis block, and it's previous hash is always 0000
 
 <br/>  
+
 ![alt text](https://github.com/bluntbrain/blockchain-notes/blob/main/blockchain/images/hashExample.jpg?raw=true)
+
 <br/> 
 
 The 5 requirements of Hash Algorithm
@@ -42,7 +44,9 @@ Distributed P2P network
 All nodes interact with each other, there is no client server.
 
 <br/>  
+
 ![alt text](https://github.com/bluntbrain/blockchain-notes/blob/main/blockchain/images/p2p.jpg?raw=true)
+
 <br/> 
 
 Blockchain Mining
@@ -50,13 +54,17 @@ Blockchain "mining" is a metaphor for the computational work that nodes in the n
 
 
 <br/>  
+
 ![alt text](https://github.com/bluntbrain/blockchain-notes/blob/main/blockchain/images/mining.jpg?raw=true)
+
 <br/> 
 
 Byzantine Generals Problem
 
 <br/>  
+
 ![alt text](https://github.com/bluntbrain/blockchain-notes/blob/main/blockchain/images/bgp.jpg?raw=true)
+
 <br/> 
 
 Practical Byzantine Fault Tolerance is a consensus algorithm introduced in the late 90s by Barbara Liskov and Miguel Castro. pBFT was designed to work efficiently in asynchronous(no upper bound on when the response to the request will be received) systems. It says whatever the majority says is followed.
