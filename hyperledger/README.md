@@ -61,4 +61,18 @@ Chaincode is a program, written in Go, Node.js or Java that implements a prescri
 6. Order transaction and create block
 7. Peers validate each transaction in the block
 
+Hyperledger Installation
+Step 1: Run below command to download and setup Fabric.
+```shell
+curl -sSL https://bit.ly/2ysbOFE | bash -s
+```
+
+You may encounter below issue when you run above command.
+failed to get default registry endpoint from daemon (Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock:
+To fix this you need run below command.
+```shell
+sudo chmod 666 /var/run/docker.sock
+```
+
+
  
