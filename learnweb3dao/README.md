@@ -23,12 +23,29 @@ There are 3 types of variables in Solidity
         Provide information about the blockchain. They are injected by the Ethereum Virtual Machine during runtime.
         Includes things like transaction sender, block timestamp, block hash, etc.
 
-https://en.wikipedia.org/wiki/Double-spending </br>
 
 Videos to watch</br>
 https://www.youtube.com/watch?v=bBC-nXj3Ng4 </br>
 https://andersbrownworth.com/blockchain/ </br>
 
 Reading Material</br>
+https://solidity-by-example.org/ </br>
 https://ethereum.org/en/developers/docs/web2-vs-web3/</br>
+https://en.wikipedia.org/wiki/Double-spending </br>
+
+
+What is Gas?</br>
+Gas is the fuel that allows it (Ethereum) to operate, in the same way that a car needs gasoline to run.</br>
+Just like how seconds are a unit of time, and metres a unit of distance, gas by itself is a unit of computation on the Ethereum Network.</br>
+
+```shell
+1 Gwei(Gas unit) = 0.000000001 ETH
+
+
+
+Gwei stands for Giga-Wei, which is equal to 1,000,000,000 (10^9) wei. Wei is the smallest denomination of ETH. 1 ETH = 10^18 Wei.
+
+```
+
+
 
