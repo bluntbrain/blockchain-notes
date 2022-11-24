@@ -47,5 +47,33 @@ Gwei stands for Giga-Wei, which is equal to 1,000,000,000 (10^9) wei. Wei is the
 
 ```
 
+Ethereum does not have an overall maximum supply (unlike Bitcoin, which has a maximum supply of 21M Bitcoins)</br>
+
+Before London Upgrade</br>
+gas fees = gas spent * gas price</br>
+
+After London Upgrade</br>
+gas fees = gas spent * (base fees + priority fees) </br>
+
+A transaction has "finality" on Ethereum when it's part of a block that can't change.
+
+# PoW vs PoS
+
+Proof of Stake underlies the consensus mechanism used by the Ethereum network (and many other blockchains). The idea is as follows:</br>
+
+1. Validators stake capital in the form of $ETH tokens into a smart contract on Ethereum</br>
+2. Significantly less energy usage</br>
+3. Lower barrier to entry </br>
+4. Reduced centralization risk - due to the cost and specialized knowledge of setting up mining farms in PoW, there was a centralization risk associated with Ethereum being a PoW network. With PoS, since validators just need to stake some capital up front with much more reasonable hardware requirements</br>
+
+A sybil attack is the problem where one user or entity pretends to be many different users or entities. Security against this type of attack is essential for a decentralized blockchain to allow validators to be rewarded based on the resources they put in, not just random selection. </br>
+
+an algorithm called LMD-GHOST which works to identify which fork has the greatest amount of assestations in it's history.</br>
+
+On PoS Ethereum, this is managed through the use of "checkpoint" blocks. Every 32 blocks, called an epoch, a checkpoint block is produced. Along with voting for individual blocks, validators also vote for pairs of checkpoint blocks every epoch.</br>
+
+The state in Ethereum is stored as a really large data structure called a Merkle Patricia Trie.</br>
+
+
 
 
