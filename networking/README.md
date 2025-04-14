@@ -1,16 +1,16 @@
-# Comprehensive Guide to Computer Networking
+# Computer Networking Notes
 
 ## Topics
-- Core Networking Concepts
-- Internet Evolution
-- Network Protocols
-- IP Addresses (IPv4 vs IPv6) and Ports
-- Types of Networks
-- OSI Modal
-- TCP/IP Modal
-- HTTP vs HTTPS
-- CORS
-- What Happens When You Click a Link
+- [Core Networking Concepts](#core-networking-concepts)
+- [Internet Evolution](#the-internet-evolution)
+- [Network Protocols](#network-protocols-standards)
+- [IP Addresses (IPv4 vs IPv6) and Ports](#ip-addresses-ipv4-vs-ipv6-and-ports)
+- [Types of Networks](#types-of-networks)
+- [OSI Model](#osi-model)
+- [TCP/IP Model](#tcpip-model)
+- [HTTP vs HTTPS](#http-vs-https)
+- [CORS](#cors-cross-origin-resource-sharing)
+- [What Happens When You Click a Link?](#what-happens-when-you-click-a-link)
 
 ### Core Networking Concepts
 1. **Packets**
@@ -152,28 +152,15 @@ The internet's development can be traced back to the Cold War era:
 
 ## Types of Networks
 
-| Network Type | Description | Characteristics | Common Use Cases | Technologies |
-|-------------|-------------|-----------------|-----------------|--------------|
-| **LAN (Local Area Network)** | Connects devices in a limited area | - High bandwidth<br>- Low latency<br>- Private ownership<br>- Limited geographic area | - Office networks<br>- Home networks<br>- School networks | - Ethernet<br>- Wi-Fi<br>- Token Ring<br>- FDDI |
-| **WAN (Wide Area Network)** | Spans large geographic areas | - Multiple LANs connected<br>- Public/private infrastructure<br>- Lower bandwidth than LAN<br>- Higher latency | - Internet<br>- Corporate networks<br>- Global organizations | - MPLS<br>- Frame Relay<br>- ATM<br>- SD-WAN |
-| **MAN (Metropolitan Area Network)** | Covers a city or large campus | - Medium geographic area<br>- High-speed connections<br>- Multiple LANs connected | - City-wide networks<br>- University campuses<br>- Government networks | - Metro Ethernet<br>- DWDM<br>- SONET |
-| **PAN (Personal Area Network)** | Connects personal devices | - Very short range<br>- Low power consumption<br>- Personal use | - Smart home devices<br>- Wearables<br>- Personal computers | - Bluetooth<br>- Zigbee<br>- NFC<br>- Infrared |
-| **CAN (Campus Area Network)** | Connects multiple LANs in a campus | - Limited to specific campus<br>- High-speed connections<br>- Multiple buildings | - University campuses<br>- Business parks<br>- Military bases | - Ethernet<br>- Fiber optics<br>- Wireless bridges |
-| **SAN (Storage Area Network)** | Dedicated high-speed storage network | - High performance<br>- Block-level storage<br>- Dedicated infrastructure | - Data centers<br>- Enterprise storage<br>- Cloud storage | - Fibre Channel<br>- iSCSI<br>- FCoE |
-| **VPN (Virtual Private Network)** | Secure network over public infrastructure | - Encrypted connections<br>- Remote access<br>- Secure tunneling | - Remote work<br>- Secure communications<br>- Bypassing restrictions | - IPsec<br>- SSL/TLS<br>- OpenVPN<br>- WireGuard |
-| **WLAN (Wireless LAN)** | Wireless local area network | - No physical cables<br>- Mobility<br>- Variable signal strength | - Mobile devices<br>- IoT devices<br>- Public hotspots | - Wi-Fi (802.11)<br>- Li-Fi<br>- Wireless mesh |
-| **SDN (Software-Defined Network)** | Network managed by software | - Centralized control<br>- Programmable<br>- Virtualized | - Cloud computing<br>- Data centers<br>- Enterprise networks | - OpenFlow<br>- Network virtualization<br>- SD-WAN |
+| Network Type | Description | Key Features | Common Use |
+|-------------|-------------|-------------|------------|
+| **LAN (Local Area Network)** | Connects devices in a small area | - High speed<br>- Low latency<br>- Private | Offices, homes, schools |
+| **WAN (Wide Area Network)** | Spans large geographic areas | - Connects multiple LANs<br>- Lower speed<br>- Higher latency | Internet, global organizations |
+| **WLAN (Wireless LAN)** | Wireless local network | - No cables<br>- Mobility<br>- Variable signal | Mobile devices, IoT, hotspots |
+| **VPN (Virtual Private Network)** | Secure network over public internet | - Encrypted<br>- Remote access<br>- Secure tunneling | Remote work, secure access |
 
 ### Network Topologies
-
-| Topology | Description | Advantages | Disadvantages | Common Use Cases |
-|----------|-------------|------------|---------------|-----------------|
-| **Star** | Central hub with connected nodes | - Easy to manage<br>- Fault isolation<br>- Easy to add/remove nodes | - Single point of failure<br>- Requires more cabling | - Home networks<br>- Office networks<br>- Small businesses |
-| **Bus** | Single communication line | - Simple design<br>- Less cabling<br>- Easy to implement | - Difficult to troubleshoot<br>- Limited scalability<br>- Single point of failure | - Legacy networks<br>- Small networks<br>- Temporary setups |
-| **Ring** | Circular connection of nodes | - Equal access to resources<br>- No collisions<br>- Good performance | - Single point of failure<br>- Difficult to add/remove nodes<br>- Complex troubleshooting | - Token Ring networks<br>- FDDI networks<br>- Some WANs |
-| **Mesh** | Multiple interconnections | - High redundancy<br>- Multiple paths<br>- High reliability | - Complex design<br>- High cost<br>- Difficult to manage | - Military networks<br>- Critical infrastructure<br>- Data centers |
-| **Tree** | Hierarchical structure | - Scalable<br>- Easy to manage<br>- Good for large networks | - Complex design<br>- Single point of failure at root<br>- Requires careful planning | - Enterprise networks<br>- ISP networks<br>- Large organizations |
-| **Hybrid** | Combination of topologies | - Flexible<br>- Customizable<br>- Optimized for needs | - Complex design<br>- Difficult to manage<br>- Higher cost | - Large enterprises<br>- Complex networks<br>- Custom solutions |
+![Network Diagram](/networking/assets/topologies.png)
 
 ## Network Infrastructure
 
@@ -212,121 +199,11 @@ The internet's development can be traced back to the Cold War era:
 
 ## OSI Model
 
-The OSI (Open Systems Interconnection) model consists of seven layers:
+- consists of 7 layers
 
-```
-┌─────────────────────────────────────────────────┐
-│                    Application                   │ Layer 7
-├─────────────────────────────────────────────────┤
-│                    Presentation                 │ Layer 6
-├─────────────────────────────────────────────────┤
-│                      Session                    │ Layer 5
-├─────────────────────────────────────────────────┤
-│                      Transport                  │ Layer 4
-├─────────────────────────────────────────────────┤
-│                      Network                    │ Layer 3
-├─────────────────────────────────────────────────┤
-│                      Data Link                  │ Layer 2
-├─────────────────────────────────────────────────┤
-│                      Physical                   │ Layer 1
-└─────────────────────────────────────────────────┘
-```
+![OSI](/networking/assets/osi.png)
 
-### Layer Functions
 
-1. **Physical Layer (Layer 1)**
-   - Functions:
-     - Bit transmission
-     - Physical topology
-     - Signal encoding
-     - Transmission mode
-   - Devices:
-     - Hubs
-     - Repeaters
-     - Cables
-     - Connectors
-   - Protocols:
-     - Ethernet
-     - USB
-     - Bluetooth
-     - IEEE 802.11
-
-2. **Data Link Layer (Layer 2)**
-   - Functions:
-     - Frame creation
-     - Error detection
-     - Flow control
-     - MAC addressing
-   - Sublayers:
-     - LLC (Logical Link Control)
-     - MAC (Media Access Control)
-   - Protocols:
-     - Ethernet
-     - PPP
-     - HDLC
-     - Frame Relay
-
-3. **Network Layer (Layer 3)**
-   - Functions:
-     - Routing
-     - Logical addressing
-     - Path determination
-     - Packet forwarding
-   - Protocols:
-     - IP
-     - ICMP
-     - ARP
-     - OSPF
-     - BGP
-
-4. **Transport Layer (Layer 4)**
-   - Functions:
-     - End-to-end communication
-     - Error recovery
-     - Flow control
-     - Multiplexing
-   - Protocols:
-     - TCP
-     - UDP
-     - SCTP
-     - DCCP
-
-5. **Session Layer (Layer 5)**
-   - Functions:
-     - Session establishment
-     - Session maintenance
-     - Session termination
-     - Dialog control
-   - Protocols:
-     - NetBIOS
-     - PPTP
-     - L2TP
-     - SOCKS
-
-6. **Presentation Layer (Layer 6)**
-   - Functions:
-     - Data translation
-     - Encryption/decryption
-     - Compression
-     - Character encoding
-   - Protocols:
-     - SSL/TLS
-     - MIME
-     - XDR
-     - ASCII
-
-7. **Application Layer (Layer 7)**
-   - Functions:
-     - User interface
-     - Application services
-     - Network services
-     - Resource sharing
-   - Protocols:
-     - HTTP
-     - FTP
-     - SMTP
-     - DNS
-     - DHCP
 
 ## HTTP vs HTTPS
 
@@ -391,7 +268,6 @@ The OSI (Open Systems Interconnection) model consists of seven layers:
    - Extensions
 
 ## CORS (Cross-Origin Resource Sharing)
-# CORS (Cross-Origin Resource Sharing)
 
 ## What is CORS?
 
@@ -442,51 +318,10 @@ Here's a quick visual summary of how CORS operates:
 3. **Browser** → Checks these headers and decides whether to allow access to the resource.
 
 
-## What Happens When You Click a Link
+## What Happens When You Click a Link?
 
 ## Detailed Process
-
-```mermaid
-flowchart LR
-  A["User clicks on https://www.google.com"] --> B["Browser parses URL"]
-  B --> C{"Is domain cached?"}
-  C -- Yes --> D["Use cached IP address"]
-  C -- No --> E["Check OS DNS cache"]
-  E --> F{"Found in cache?"}
-  F -- Yes --> D
-  F -- No --> G["Send DNS query to resolver (ISP or 8.8.8.8)"]
-  G --> H["Resolver checks its cache"]
-  H --> I{"Found in cache?"}
-  I -- Yes --> D
-  I -- No --> J["Query Root DNS servers"]
-  J --> K["Get TLD DNS server for .com"]
-  K --> L["Get Authoritative DNS server for google.com"]
-  L --> M["Get IP address for www.google.com"]
-  M --> D
-
-  D --> N["Start TCP 3-way handshake (SYN, SYN-ACK, ACK)"]
-  N --> O["Perform TLS handshake (certificates, keys)"]
-  O --> P["Send HTTPS GET request for /"]
-  P --> Q["Packet travels through router, ISP, and Internet"]
-
-  Q --> R["Google's server receives request"]
-  R --> S["Server processes request (web server, backend, DB)"]
-  S --> T["Server sends HTTP response (HTML, CSS links, JS)"]
-  T --> U["Response travels back to client"]
-
-  U --> V["Browser receives HTML and starts rendering"]
-  V --> W["Build DOM tree from HTML"]
-  W --> X["Fetch linked resources (CSS, JS, images)"]
-  X --> Y["Create Render Tree (DOM + CSS)"]
-  Y --> Z["Layout: calculate positions"]
-  Z --> AA["Paint: draw pixels on screen"]
-
-  AA --> AB{"All resources loaded?"}
-  AB -- Yes --> AC["Fire window.onload event"]
-  AC --> AD["Page is fully interactive"]
-```
-
-## Step-by-Step Explanation
+![Click Link](/networking/assets/clicklink.png)
 
 ### 1. URL Parsing and DNS Resolution
 
@@ -558,7 +393,6 @@ flowchart LR
    - **Headers**: Include client capabilities and preferences
    - **Method**: GET, POST, etc.
    - **Path**: Resource being requested
-   - **Protocol**: HTTP/1.1 or HTTP/2
 
 2. **Network Routing**
    - **Local Network**: Router forwards packet to ISP
@@ -577,28 +411,9 @@ flowchart LR
 ### 4. Browser Rendering
 
 1. **HTML Parsing**
-   - **Tokenization**: Breaks HTML into tokens
-   - **DOM Tree**: Creates Document Object Model
-   - **CSSOM**: Creates CSS Object Model
-   - **JavaScript Execution**: Parses and executes scripts
-
 2. **Resource Loading**
-   - **Parallel Loading**: Multiple resources load simultaneously
-   - **Priority Queue**: Critical resources load first
-   - **Cache Control**: Checks cache headers
-   - **Preload Scanner**: Looks ahead for resources
-
 3. **Rendering Pipeline**
-   - **Style Calculation**: Computes final styles
-   - **Layout**: Calculates element positions
-   - **Paint**: Creates layers and draws pixels
-   - **Compositing**: Combines layers efficiently
-
 4. **Page Load Events**
-   - **DOMContentLoaded**: HTML parsed, DOM ready
-   - **Load**: All resources loaded
-   - **First Paint**: First pixels on screen
-   - **Time to Interactive**: Page fully interactive
 
 ## Technical Terms Explained
 
@@ -606,7 +421,6 @@ flowchart LR
    - Hierarchical naming system
    - Converts domain names to IP addresses
    - Uses UDP port 53
-   - Distributed database system
 
 2. **TCP (Transmission Control Protocol)**
    - Connection-oriented protocol
@@ -624,12 +438,10 @@ flowchart LR
    - Application layer protocol
    - Stateless request-response model
    - Headers for metadata
-   - Methods for different operations
+   - Methods for different operations (eg. POST, GET)
 
 5. **Rendering Engine**
    - Parses HTML/CSS
-   - Creates DOM/CSSOM trees
-   - Calculates layout
    - Paints pixels
    - Handles JavaScript execution
 
@@ -638,7 +450,7 @@ flowchart LR
    - Reduces network requests & Improves performance
    - Multiple levels (browser, OS, DNS)
 
-1. **CDN (Content Delivery Network)**
+7. **CDN (Content Delivery Network)**
    - Distributed server network
    - Caches content closer to users
    - Reduces latency & Improves availability 
