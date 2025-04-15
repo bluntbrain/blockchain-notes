@@ -1,16 +1,40 @@
 # Computer Networking Notes
 
 ## Topics
-- [Core Networking Concepts](#core-networking-concepts)
-- [Internet Evolution](#the-internet-evolution)
-- [Network Protocols](#network-protocols-standards)
-- [IP Addresses (IPv4 vs IPv6) and Ports](#ip-addresses-ipv4-vs-ipv6-and-ports)
-- [Types of Networks](#types-of-networks)
-- [OSI Model](#osi-model)
-- [TCP/IP Model](#tcpip-model)
-- [HTTP vs HTTPS](#http-vs-https)
-- [CORS](#cors-cross-origin-resource-sharing)
-- [What Happens When You Click a Link?](#what-happens-when-you-click-a-link)
+- [Computer Networking Notes](#computer-networking-notes)
+  - [Topics](#topics)
+    - [Core Networking Concepts](#core-networking-concepts)
+  - [The Internet Evolution](#the-internet-evolution)
+  - [Network Protocols (Standards)](#network-protocols-standards)
+    - [Checksums](#checksums)
+  - [IP Addresses (IPv4 vs IPv6) and Ports](#ip-addresses-ipv4-vs-ipv6-and-ports)
+  - [Ports, Sockets](#ports-sockets)
+    - [Ports and Network Communication](#ports-and-network-communication)
+    - [Sockets](#sockets)
+  - [Types of Networks](#types-of-networks)
+    - [Network Topologies](#network-topologies)
+  - [Network Infrastructure](#network-infrastructure)
+    - [Connection Methods](#connection-methods)
+  - [OSI Model](#osi-model)
+  - [TCP/IP Model](#tcpip-model)
+    - [1. Network Access Layer (Link Layer)](#1-network-access-layer-link-layer)
+    - [2. Internet Layer](#2-internet-layer)
+    - [3. Transport Layer](#3-transport-layer)
+    - [4. Application Layer](#4-application-layer)
+  - [HTTP vs HTTPS](#http-vs-https)
+    - [HTTP (Hypertext Transfer Protocol)](#http-hypertext-transfer-protocol)
+    - [HTTPS (Hypertext Transfer Protocol Secure)](#https-hypertext-transfer-protocol-secure)
+  - [CORS (Cross-Origin Resource Sharing)](#cors-cross-origin-resource-sharing)
+    - [The Problem](#the-problem)
+    - [How CORS Works](#how-cors-works)
+    - [Fixing CORS Issues](#fixing-cors-issues)
+      - [Backend Solutions](#backend-solutions)
+      - [Frontend Solutions](#frontend-solutions)
+    - [Key CORS Headers](#key-cors-headers)
+  - [What Happens When You Click a Link?](#what-happens-when-you-click-a-link)
+  - [Detailed Process](#detailed-process)
+    - [1. URL Parsing and DNS Resolution](#1-url-parsing-and-dns-resolution)
+    - [2. TCP Connection and TLS Handshake](#2-tcp-connection-and-tls-handshake)
 
 ### Core Networking Concepts
 1. **Packets**
@@ -59,6 +83,41 @@ The internet's development can be traced back to the Cold War era:
    - Revolutionized information sharing
 
 ## Network Protocols (Standards)
+
+### Checksums
+
+**Checksum** is a small fixed-size value calculated from a block of data for detecting errors in transmission. It functions like a digital fingerprint of data.
+
+**Why checksums are needed:**
+- **Data Integrity**: Detect accidental changes during transmission
+- **Wide Application**: Used in protocols (TCP/UDP), file downloads, and data storage
+
+**How checksums work:**
+1. Sender calculates checksum from data using an algorithm
+2. Checksum is transmitted with the data
+3. Receiver recalculates checksum using same algorithm 
+4. Checksums are compared - match indicates intact data
+
+**Checksum Calculation Methods:**
+   - **One's Complement Sum**: Used in TCP/IP (Internet Checksum)
+     - Add all data words
+     - Wrap any carries back into the sum
+     - Flip all bits (one's complement)
+   
+   - **Two's Complement**: Alternative approach
+     - Add all values
+     - Negate the result using two's complement math
+   
+   - **Modular Sum**: Simple approach
+     - Add all bytes
+     - Take modulo of sum (typically mod 255 or 256)
+   
+   - **XOR Checksum**: Simplest implementation
+     - Start with initial value (often 0)
+     - XOR with each byte sequentially
+**Limitations:**
+- Can only detect errors, not correct them
+- Some errors might go undetected if they cancel each other out
 
 1. **TCP (Transmission Control Protocol)**
    - Connection-oriented protocol
@@ -143,6 +202,9 @@ The internet's development can be traced back to the Cold War era:
 | Multicast Support | Limited | Enhanced |
 | Header Complexity | Complex | Simplified |
 | Address Types | Unicast, Broadcast, Multicast | Unicast, Multicast, Anycast |
+| Current Usage | Still dominant (95%+ of traffic) | Growing but limited adoption |
+
+> **Note:** Despite IPv6's advantages, IPv4 remains the primary protocol for internet traffic due to the slow transition process and compatibility concerns. Most networks use a dual-stack approach supporting both protocols.
 
 | Port Range | Type | Description | Common Examples |
 |------------|------|-------------|-----------------|
@@ -150,6 +212,36 @@ The internet's development can be traced back to the Cold War era:
 | 1024-49151 | Registered | Assigned by IANA for applications | 3306: MySQL<br>5432: PostgreSQL<br>27017: MongoDB<br>6379: Redis |
 | 49152-65535 | Dynamic/Private | Temporary/ephemeral connections | Assigned by OS for client connections |
 
+## Ports, Sockets
+
+### Ports and Network Communication
+
+**Ports** are virtual endpoints that allow a single device with one IP address to run multiple network services. They act like numbered doors on a building (the IP address), each leading to a different service.
+
+1. **How Ports Work**
+   - 16-bit numbers (0-65535) that identify specific processes
+   - Combined with IP addresses to form a complete address (IP:Port)
+   - Example: 192.168.1.5:80 (web server at IP 192.168.1.5, port 80)
+
+2. **Port Assignment**
+   - Server applications bind to specific well-known ports
+   - Client applications use dynamic ports assigned by the OS
+   - Local port tables track active connections
+
+### Sockets
+
+A **socket** is the combination of an IP address and port number that represents one endpoint of a communication channel. Sockets are the foundation of network programming.
+
+1. **Socket Basics**
+   - Created by the operating system when applications request network connections
+   - Identified by a unique 5-tuple: (Protocol, Local IP, Local Port, Remote IP, Remote Port)
+   - Allows bidirectional communication between applications
+
+2. **Socket Programming**
+   - Socket API: Standard interface for network programming
+   - Socket states: LISTEN, ESTABLISHED, CLOSE_WAIT, etc.
+   - Example socket address: 10.1.1.5:3000 to 192.168.1.10:80
+  
 ## Types of Networks
 
 | Network Type | Description | Key Features | Common Use |
@@ -167,33 +259,17 @@ The internet's development can be traced back to the Cold War era:
 ### Connection Methods
 
 1. **Wired Connections**
-   - Ethernet:
-     - Categories: Cat5, Cat5e, Cat6, Cat6a
-     - Speeds: 10Mbps to 10Gbps
-     - Distance: Up to 100m
-   - Fiber Optics:
-     - Types: Single-mode, Multi-mode
-     - Speeds: Up to 100Gbps
-     - Distance: Up to 40km
-   - Coaxial:
-     - Used in cable internet
-     - Speeds: Up to 1Gbps
-     - Distance: Up to 500m
+   - Ethernet: Speeds: 10Mbps to 10Gbps, Distance: Up to 100m
+   - Fiber Optics: Speeds: Up to 100Gbps, Distance: Up to 40km
+   - Coaxial: Speeds: Up to 1Gbps, Distance: Up to 500m
 
-2. **Wireless Connections**
-   - Wi-Fi Standards:
-     - 802.11a: 5GHz, 54Mbps
-     - 802.11b: 2.4GHz, 11Mbps
-     - 802.11g: 2.4GHz, 54Mbps
-     - 802.11n: 2.4/5GHz, 600Mbps
-     - 802.11ac: 5GHz, 1.3Gbps
-     - 802.11ax: 2.4/5GHz, 10Gbps
+1. **Wireless Connections**
+   - Wi-Fi
    - Cellular:
      - 3G: Up to 2Mbps
      - 4G: Up to 100Mbps
      - 5G: Up to 10Gbps
    - Bluetooth:
-     - Versions: 1.0 to 5.3
      - Range: Up to 100m
      - Speed: Up to 2Mbps
 
@@ -203,38 +279,68 @@ The internet's development can be traced back to the Cold War era:
 
 ![OSI](/networking/assets/osi.png)
 
+## TCP/IP Model
 
+The TCP/IP model is a more practical and widely implemented networking framework than the OSI model. It consists of 4 layers that map roughly to the 7 layers of the OSI model.
+
+```
+┌─────────────────┐  ┌───────────────────────┐
+│   APPLICATION   │  │      Application      │
+├─────────────────┤  │      Presentation     │
+│    TRANSPORT    │  │       Session         │
+├─────────────────┤  ├───────────────────────┤
+│    INTERNET     │  │       Transport       │
+├─────────────────┤  ├───────────────────────┤
+│  NETWORK ACCESS │  │       Network         │
+│                 │  ├───────────────────────┤
+│                 │  │    Data Link          │
+│                 │  │    Physical           │
+└─────────────────┘  └───────────────────────┘
+    TCP/IP Model           OSI Model
+```
+
+### 1. Network Access Layer (Link Layer)
+- **Equivalent to**: OSI Physical and Data Link layers
+- **Function**: Handles physical connection to the network and data framing
+- **Protocols**: Ethernet, Wi-Fi (802.11), PPP, ARP
+- **Addressing**: MAC addresses
+
+### 2. Internet Layer
+- **Equivalent to**: OSI Network layer
+- **Function**: Handles logical addressing and routing of packets
+- **Protocols**: IP, ICMP, IPsec, IGMP
+- **Addressing**: IP addresses (IPv4, IPv6)
+- **Units**: Packets
+- **Devices**: Routers, layer 3 switches
+
+### 3. Transport Layer
+- **Equivalent to**: OSI Transport layer
+- **Function**: Provides end-to-end communication, reliability, flow control
+- **Protocols**: TCP, UDP, SCTP
+- **Addressing**: Ports
+- **Units**: Segments (TCP) or Datagrams (UDP)
+- **Features**: 
+  - TCP: Connection-oriented, reliable, ordered delivery
+  - UDP: Connectionless, faster, no guarantees
+
+### 4. Application Layer
+- **Equivalent to**: OSI Session, Presentation, and Application layers
+- **Function**: Provides network services directly to end-users
+- **Protocols**: HTTP, HTTPS, FTP, SMTP, DNS, SSH, Telnet
+- **Units**: Data/Messages
+- **Focus**: User interfaces and data representation
 
 ## HTTP vs HTTPS
 
 ### HTTP (Hypertext Transfer Protocol)
 
-1. **Basic Characteristics**
-   - Stateless protocol
-   - Text-based
-   - Port 80
-   - No encryption
-   - Faster than HTTPS
+**Basic Characteristics**
+- Stateless protocol
+- Text-based
+- Port 80
+- No encryption
+- Faster than HTTPS
 
-2. **HTTP Request Structure**
-   ```
-   GET /index.html HTTP/1.1
-   Host: www.example.com
-   User-Agent: Mozilla/5.0
-   Accept: text/html
-   Accept-Language: en-US
-   Connection: keep-alive
-   ```
-
-3. **HTTP Response Structure**
-   ```
-   HTTP/1.1 200 OK
-   Date: Mon, 23 May 2005 22:38:34 GMT
-   Content-Type: text/html; charset=UTF-8
-   Content-Length: 138
-   Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT
-   Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
-   ```
 
 ### HTTPS (Hypertext Transfer Protocol Secure)
 
@@ -244,19 +350,16 @@ The internet's development can be traced back to the Cold War era:
    - Uses SSL/TLS encryption
    - Slower than HTTP
    - Requires certificates
-
-2. **SSL/TLS Handshake**
+  
+2. **SSL (Secure Sockets Layer)/TLS (Transport Layer Security) Handshake**
    ```mermaid
    sequenceDiagram
        participant Client
        participant Server
-       Client->>Server: Client Hello
-       Server->>Client: Server Hello + Certificate
-       Client->>Server: Client Key Exchange
-       Server->>Client: Server Hello Done
-       Client->>Server: Change Cipher Spec
-       Server->>Client: Change Cipher Spec
-       Client->>Server: Encrypted Data
+       Client->>Server: Initial Hello
+       Server->>Client: Hello + Certificate
+       Client->>Server: Exchange Keys
+       Client->>Server: Begin Encryption
    ```
 
 3. **Certificate Components**
@@ -265,58 +368,58 @@ The internet's development can be traced back to the Cold War era:
    - Issuer information
    - Validity period
    - Digital signature
-   - Extensions
 
 ## CORS (Cross-Origin Resource Sharing)
 
-## What is CORS?
+**CORS** is a security mechanism that restricts web pages from making requests to domains different from the one that served the page. It uses HTTP headers to define permissions.
 
-**Cross-Origin Resource Sharing (CORS)** is a security feature implemented by web browsers that controls how web applications can request resources from a different origin (domain, protocol, or port) than the one from which the web application was loaded. This is important for protecting user data and maintaining security on the web.
+### The Problem
 
-## Why Do We Need CORS?
+- Browser's same-origin policy blocks cross-origin requests
+- Affects API calls from frontend to backend when domains differ
+- Applies to AJAX requests, fetch API, and some HTML tags
+- Triggers "Access-Control-Allow-Origin" errors in console
 
-Web browsers enforce the **same-origin policy** to prevent malicious websites from accessing sensitive information from another origin. For example, if you visit `example.com`, a script running there should not be able to access resources from `another-domain.com` without permission. CORS allows web servers to declare which cross-origin requests are allowed, helping to safely share resources across different domains.
+### How CORS Works
 
-## How Does CORS Work?
+1. **Browser** sends request to different origin
+2. **Server** must respond with correct CORS headers
+3. **Browser** enforces policy based on response headers
 
-CORS uses HTTP headers to communicate permissions between the server and the browser. Here's how it typically works:
+### Fixing CORS Issues
 
-1. **Making a Request:** When a web application (like JavaScript code) wants to request a resource from a different origin, the browser sends an **HTTP request** to that server.
+#### Backend Solutions
 
-2. **Preflight Request (for certain requests):** Before sending the actual request (especially for methods like POST, PUT, DELETE), the browser sometimes sends a **OPTIONS request** (known as a preflight request) to check if the CORS protocol is understood by the server.
+**Express.js (Node.js)**
+   ```javascript
+   // Using cors middleware
+   const cors = require('cors');
+   
+   // Allow all origins
+   app.use(cors());
+   
+   // Or with options
+   app.use(cors({
+     origin: 'https://yourdomain.com',
+     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+     allowedHeaders: ['Content-Type', 'Authorization'],
+     credentials: true
+   }));
+   ```
 
-3. **Server Response:** The server responds with specific CORS headers in its response. These headers dictate whether the request is allowed or not.
+#### Frontend Solutions
 
-## Key CORS Headers
+**Proxy in Development**
+   - In React (package.json): `"proxy": "http://localhost:5000"`
+   - Avoids CORS in development only
 
-Here are the commonly used CORS headers:
+### Key CORS Headers
 
-- **`Access-Control-Allow-Origin`**: Specifies which origins (domains) are allowed to access the resource. This could be a specific domain or a wildcard (`*`) to allow all origins.
-
-- **`Access-Control-Allow-Credentials`**: Indicates whether the browser should include credentials (like cookies or authorization headers) with requests to the server.
-
-- **`Access-Control-Allow-Headers`**: Lists which request headers the client can use when making the actual request.
-
-- **`Access-Control-Allow-Methods`**: Specifies which HTTP methods (GET, POST, etc.) are allowed for the resource when accessed from a different origin.
-
-- **`Access-Control-Expose-Headers`**: Lists which response headers the client can access.
-
-- **`Access-Control-Max-Age`**: Specifies how long the results of a preflight request can be cached, reducing the need for repeated checks.
-
-- **`Origin`**: Sent by the browser to indicate the origin of the request. This helps the server determine whether or not to allow the request.
-
-## Example Scenario
-
-Imagine you're building a web application on `app.example.com` that needs to access data from an API at `api.another-domain.com`. Without CORS, the browser would block this request due to the same-origin policy. However, if the API server at `api.another-domain.com` responds with `Access-Control-Allow-Origin: app.example.com`, the browser allows the request because the server explicitly permits it.
-
-## Visual Summary
-
-Here's a quick visual summary of how CORS operates:
-
-1. **Client (Browser)** → Sends a request to a server on a different origin.
-2. **Server** → Responds with specific CORS headers to indicate permissions.
-3. **Browser** → Checks these headers and decides whether to allow access to the resource.
-
+- `Access-Control-Allow-Origin`: Which origins can access the resource
+- `Access-Control-Allow-Methods`: HTTP methods allowed
+- `Access-Control-Allow-Headers`: Headers allowed in requests
+- `Access-Control-Allow-Credentials`: Whether cookies can be included
+- `Access-Control-Max-Age`: How long results can be cached
 
 ## What Happens When You Click a Link?
 
@@ -362,51 +465,20 @@ Here's a quick visual summary of how CORS operates:
    - **ACK**: Client acknowledges server's sequence number
 
 2. **TLS Handshake**
-   ```mermaid
+    ```mermaid
    sequenceDiagram
        participant Client
        participant Server
-       Client->>Server: Client Hello (supported ciphers)
-       Server->>Client: Server Hello + Certificate
-       Client->>Server: Client Key Exchange
-       Server->>Client: Server Hello Done
-       Client->>Server: Change Cipher Spec
-       Server->>Client: Change Cipher Spec
-       Client->>Server: Encrypted Data
+       Client->>Server: Initial Hello
+       Server->>Client: Hello + Certificate
+       Client->>Server: Exchange Keys
+       Client->>Server: Begin Encryption
    ```
+
    - **Certificate Verification**: Client verifies server's SSL certificate
-   - **Key Exchange**: Diffie-Hellman or RSA key exchange
+   - **Key Exchange**: RSA key exchange - Public/private key pair system for secure data encryption
    - **Cipher Suite**: Agree on encryption algorithms
    - **Session Keys**: Generate keys for secure communication
-
-### 3. HTTP Request and Response
-
-1. **HTTPS Request**
-   ```http
-   GET / HTTP/1.1
-   Host: www.google.com
-   User-Agent: Mozilla/5.0
-   Accept: text/html,application/xhtml+xml
-   Accept-Language: en-US
-   Connection: keep-alive
-   ```
-   - **Headers**: Include client capabilities and preferences
-   - **Method**: GET, POST, etc.
-   - **Path**: Resource being requested
-
-2. **Network Routing**
-   - **Local Network**: Router forwards packet to ISP
-   - **ISP Network**: Routes through ISP's infrastructure
-   - **Internet Backbone**: Travels through major network hubs
-   - **Peering Points**: Exchanges between networks
-   - **CDN**: May be intercepted by Content Delivery Network
-
-3. **Server Processing**
-   - **Web Server**: Apache, Nginx, etc.
-   - **Application Server**: Processes business logic
-   - **Database**: Retrieves/store data
-   - **Caching**: Checks various cache layers
-   - **Load Balancing**: Distributes request if needed
 
 ### 4. Browser Rendering
 
@@ -459,81 +531,28 @@ Here's a quick visual summary of how CORS operates:
 
 ### Network Security
 
-1. **Firewalls**
-   - Types:
-     - Packet-filtering
-     - Stateful inspection
-     - Application-level
-     - Next-generation
-   - Rules:
-     - Allow/deny
-     - Port filtering
-     - IP filtering
-     - Protocol filtering
+**Firewalls: Your Network's Security Guard**
+   
+   A firewall is a security system that monitors and controls network traffic based on predetermined security rules.
+   
+   ```
+   Internet                   Firewall                 Internal Network
+   ┌─────────┐              ┌─────────┐                ┌─────────┐
+   │ External │ → Malicious │ Inspect │                │Protected│
+   │ Traffic  │ → Traffic   │  and    │ → Legitimate → │   LAN   │
+   │         │ →           │ Filter  │ → Traffic      │         │
+   └─────────┘              └─────────┘                └─────────┘
+   ```
 
-2. **VPNs**
-   - Types:
-     - Site-to-site
-     - Remote access
-     - Client-to-site
-   - Protocols:
-     - IPsec
-     - SSL/TLS
-     - PPTP
-     - L2TP
+   **How Firewalls Make Decisions:**
+   - Source/destination IP addresses (Who's sending/receiving?)
+   - Port numbers (Which service/application?)
+   - Packet type/protocol (How is data being sent?)
+   - Application data (What's in the message?)
+   
+   **Simple Example Rule:**
+   ```
+   ALLOW TCP traffic FROM any address TO 192.168.1.10 ON PORT 443 (HTTPS)
+   DENY all other traffic TO 192.168.1.10
+   ```
 
-3. **Intrusion Detection/Prevention**
-   - Signature-based
-   - Anomaly-based
-   - Behavior-based
-   - Hybrid systems
-
-### Network Performance
-
-1. **QoS (Quality of Service)**
-   - Traffic prioritization
-   - Bandwidth management
-   - Latency control
-   - Packet loss prevention
-
-2. **Load Balancing**
-   - Algorithms:
-     - Round-robin
-     - Least connections
-     - IP hash
-     - Weighted
-   - Types:
-     - Hardware
-     - Software
-     - DNS-based
-
-3. **Caching**
-   - Browser caching
-   - CDN caching
-   - Proxy caching
-   - Application caching
-
-### Network Troubleshooting
-
-1. **Tools**
-   - ping
-   - traceroute
-   - netstat
-   - tcpdump
-   - Wireshark
-   - nmap
-
-2. **Common Issues**
-   - DNS resolution
-   - Connection timeouts
-   - Packet loss
-   - Bandwidth congestion
-   - Firewall blocks
-
-3. **Debugging Steps**
-   - Verify connectivity
-   - Check DNS resolution
-   - Test port availability
-   - Analyze traffic
-   - Check firewall rules
-   - Verify routing
